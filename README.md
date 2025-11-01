@@ -46,17 +46,6 @@ The platform implements a comprehensive set of features for job offer management
 | **JSON** | Manipulation of job offer data structure. |
 
 ---
-
-## Getting Started
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [Your Repository Link Here]
-    cd [repository-name]
-    ```
-2.  **Run the application:**
-    Open the `index.html` file directly in your web browser (or use a tool like Live Server for development).
-
 > **Live Demo:** The application is hosted on GitHub Pages
 
 ---
