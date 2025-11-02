@@ -118,7 +118,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const favoriteJobsContainer = document.getElementById(
     "favorite-jobs-container"
   );
+
   const favoritesCount = document.getElementById("favorites-count");
+
+  function updateFavoritesCount() {
+    const currentFavorites = document.querySelectorAll(
+      ".job-card.favorited"
+    ).length;
+    if (favoritesCount) {
+      favoritesCount.textContent = currentFavorites;
+    }
+  }
+
+  document.addEventListener("click", (event) => {
+    if (event.target.closest(".job-card__favorite-btn")) {
+      const favoriteButton = event.target.closest(".job-card__favorite-btn");
+      const jobCard = favoriteButton.closest(".job-card");
+      const isFavorited = jobCard.classList.contains("favorited");
+
+      if (isFavorited) {
+        jobCard.classList.remove("favorited");
+        jobCard.remove();
+        favoriteButton.textContent = "☆";
+        updateFavoritesCount();
+      } else {
+        jobCard.classList.add("favorited");
+        favoriteJobsContainer.appendChild(jobCard);
+        favoriteButton.textContent = "★";
+        favoriteButton.style.color = "gold";
+        updateFavoritesCount();
+      }
+    }
+  });
+
+  updateFavoritesCount();
 
   // DOM Elements - Job Management
   const manageJobsList = document.getElementById("manage-jobs-list");
@@ -182,21 +215,13 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     </li>`;
 
-    // .addEventListener("click", manageModalCloseBtn);
     console.log(typeof manageModalCloseBtn);
-    // if (manageJobsList){
-    //   manageModalCloseBtn = 1;
-    // }
-
-    // console.log(job.id);
   });
 
   manageJobsList.addEventListener("click", function (e) {
     if (e.target.classList.contains("btn-delete")) {
       const jobRemove = e.target.closest(".manage-job-item");
       jobRemove.remove();
-    } else if(e.target.classList.contains("btn-edit")){
-      console.log('zrff')
     }
   });
 
